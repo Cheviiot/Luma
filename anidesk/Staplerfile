@@ -61,16 +61,14 @@ Categories=AudioVideo;Video;
 StartupWMClass=anidesk
 EOF
 
-    # Иконка из .ico (извлекаем 256x256)
+    # Иконка - копируем .ico напрямую (большинство DE поддерживают)
     mkdir -p "${pkgdir}/usr/share/icons/hicolor/256x256/apps"
-    if command -v convert &>/dev/null && [ -f icon.ico ]; then
-        convert "icon.ico[0]" -resize 256x256 "${pkgdir}/usr/share/icons/hicolor/256x256/apps/anidesk.png" 2>/dev/null || true
-    fi
+    cp icon.ico "${pkgdir}/usr/share/icons/hicolor/256x256/apps/anidesk.ico"
 }
 
 files() {
     echo '/opt/anidesk/'
     echo '/usr/bin/anidesk'
     echo '/usr/share/applications/anidesk.desktop'
-    [ -f "${pkgdir}/usr/share/icons/hicolor/256x256/apps/anidesk.png" ] && echo '/usr/share/icons/hicolor/256x256/apps/anidesk.png'
+    echo '/usr/share/icons/hicolor/256x256/apps/anidesk.ico'
 }
