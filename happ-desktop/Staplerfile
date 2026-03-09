@@ -1,0 +1,52 @@
+name='happ-desktop'
+version='2.4.0'
+release=1
+desc='Happ — графический клиент для xray-core с поддержкой TUN/VPN, anti-censorship и управлением подписками'
+summary='Happ Proxy Client — GUI для xray-core'
+homepage='https://github.com/Happ-proxy/happ-desktop'
+maintainer='FlyFrog LLC <support@happ.su>'
+
+architectures=('amd64' 'arm64')
+
+license=('Custom')
+
+deps=('libc6' 'libssl3')
+deps_debian=('libc6' 'libssl3 | libssl3t64')
+
+sources=(
+    "https://github.com/Happ-proxy/happ-desktop/releases/download/${version}/Happ.linux.x64.deb?~archive=false&~name=happ.deb"
+)
+
+sources_arm64=(
+    "https://github.com/Happ-proxy/happ-desktop/releases/download/${version}/Happ.linux.arm64.deb?~archive=false&~name=happ.deb"
+)
+
+checksums=('SKIP')
+
+scripts=(
+    ['postinstall']='postinstall.sh'
+    ['postremove']='postremove.sh'
+)
+
+package() {
+    cd "${srcdir}"
+
+    dpkg-deb -x happ.deb "${srcdir}/happ-extracted"
+
+    cp -a "${srcdir}/happ-extracted/opt" "${pkgdir}/opt"
+
+    install -Dm644 "${srcdir}/happ-extracted/etc/systemd/system/happd.service" \
+        "${pkgdir}/etc/systemd/system/happd.service"
+
+    install -Dm644 "${srcdir}/happ-extracted/usr/share/applications/Happ.desktop" \
+        "${pkgdir}/usr/share/applications/Happ.desktop"
+
+    install -Dm644 "${srcdir}/happ-extracted/usr/share/icons/hicolor/256x256/apps/happ.png" \
+        "${pkgdir}/usr/share/icons/hicolor/256x256/apps/happ.png"
+
+    install -Dm644 "${srcdir}/happ-extracted/usr/share/mime/packages/happ-mime.xml" \
+        "${pkgdir}/usr/share/mime/packages/happ-mime.xml"
+
+    mkdir -p "${pkgdir}/usr/bin"
+    ln -s /opt/happ/bin/Happ "${pkgdir}/usr/bin/happ"
+}

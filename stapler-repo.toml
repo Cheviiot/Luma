@@ -1,0 +1,14 @@
+[repo]
+title = "Lumenara"
+
+summary = "Частный Stapler-репозиторий с приложениями"
+
+description = """
+Lumenara — Stapler-репозиторий, содержащий сборочные скрипты
+для установки приложений через Stapler."""
+
+homepage = "https://github.com/Cheviiot/Lumenara"
+
+minVersion = "v0.0.25"
+url = "https://github.com/Cheviiot/Lumenara.git"
+ref = "main"
