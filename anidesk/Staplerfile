@@ -68,8 +68,9 @@ EOF
 }
 
 files() {
-    echo '/opt/anidesk/'
-    echo '/usr/bin/anidesk'
-    echo '/usr/share/applications/anidesk.desktop'
-    echo '/usr/share/icons/hicolor/256x256/apps/anidesk.ico'
+    files-find \
+        "/opt/anidesk/**/*" \
+        "/usr/bin/anidesk" \
+        "/usr/share/applications/anidesk.desktop" \
+        "/usr/share/icons/hicolor/256x256/apps/anidesk.ico"
 }
