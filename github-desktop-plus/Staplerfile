@@ -31,7 +31,9 @@ scripts=(
 package() {
     cd "${srcdir}"
 
-    dpkg-deb -x github-desktop-plus.deb "${srcdir}/extracted"
+    mkdir -p "${srcdir}/extracted"
+    ar x github-desktop-plus.deb
+    tar -xf data.tar.* -C "${srcdir}/extracted"
 
     cp -a "${srcdir}/extracted/usr" "${pkgdir}/usr"
 
