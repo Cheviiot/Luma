@@ -27,7 +27,7 @@ deps_altlinux=('glibc' 'libgtk+3' 'libnotify' 'libnss' 'libXScrnSaver' 'libXtst'
 
 sources=(
     "https://github.com/theDesConnet/AniDesk/releases/download/v0.0.1-beta.6/anidesk-0.0.1-beta.6-linux-x64.tar.gz"
-    "https://raw.githubusercontent.com/theDesConnet/AniDesk/main/icon/icon.ico"
+    "https://raw.githubusercontent.com/theDesConnet/AniDesk/main/public/assets/icons/anidesk-icon.png"
 )
 
 checksums=('SKIP' 'SKIP')
@@ -41,9 +41,9 @@ package() {
     cd "${srcdir}"
 
     mkdir -p "${pkgdir}/opt/anidesk"
-    # Копируем всё кроме icon.ico (он используется отдельно)
+    # Копируем всё кроме иконки (она устанавливается отдельно)
     for f in *; do
-        [ "$f" = "icon.ico" ] && continue
+        [ "$f" = "anidesk-icon.png" ] && continue
         cp -a "$f" "${pkgdir}/opt/anidesk/"
     done
 
@@ -62,9 +62,9 @@ Categories=AudioVideo;Video;
 StartupWMClass=anidesk
 EOF
 
-    # Иконка - копируем .ico напрямую (большинство DE поддерживают)
+    # Иконка
     mkdir -p "${pkgdir}/usr/share/icons/hicolor/256x256/apps"
-    cp icon.ico "${pkgdir}/usr/share/icons/hicolor/256x256/apps/anidesk.ico"
+    cp anidesk-icon.png "${pkgdir}/usr/share/icons/hicolor/256x256/apps/anidesk.png"
 }
 
 files() {
@@ -72,5 +72,5 @@ files() {
         "/opt/anidesk/**/*" \
         "/usr/bin/anidesk" \
         "/usr/share/applications/anidesk.desktop" \
-        "/usr/share/icons/hicolor/256x256/apps/anidesk.ico"
+        "/usr/share/icons/hicolor/256x256/apps/anidesk.png"
 }
