@@ -1,5 +1,5 @@
 #!/bin/bash
-# Скрипт после удаления
+# Скрипт после установки/обновления
 # Запускается как root
 set -e
 
@@ -14,5 +14,8 @@ fi
 if [ -x "$(command -v gtk-update-icon-cache)" ]; then
     gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor || true
 fi
+
+chmod +x /opt/anidesk/AniDesk 2>/dev/null || true
+chmod +x /opt/anidesk/chrome-sandbox 2>/dev/null || true
 
 exit 0

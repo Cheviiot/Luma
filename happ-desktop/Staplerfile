@@ -1,17 +1,30 @@
 name='happ-desktop'
 version='2.4.0'
 release=1
-desc='Happ — графический клиент для xray-core с поддержкой TUN/VPN, anti-censorship и управлением подписками'
-summary='Happ Proxy Client — GUI для xray-core'
+summary='Happ Proxy Client — GUI for xray-core'
+summary_ru='Happ Proxy Client — GUI для xray-core'
+group='Networking/Other'
+desc='Happ is a graphical client for xray-core with TUN/VPN support, anti-censorship and subscription management.'
+desc_ru='Happ — графический клиент для xray-core с поддержкой TUN/VPN, anti-censorship и управлением подписками.'
 homepage='https://github.com/Happ-proxy/happ-desktop'
 maintainer='FlyFrog LLC <support@happ.su>'
 
 architectures=('amd64' 'arm64')
 
-license=('Custom')
+license=('custom')
+nonfree=1
+nonfree_url='https://happ.su/license'
 
-deps=('libc6' 'libssl3')
+auto_req=1
+auto_prov=1
+
+deps=()
 deps_debian=('libc6' 'libssl3 | libssl3t64')
+deps_ubuntu=('libc6' 'libssl3 | libssl3t64')
+deps_fedora=('glibc' 'openssl-libs')
+deps_arch=('glibc' 'openssl')
+deps_opensuse=('glibc' 'libopenssl1_1')
+deps_altlinux=('glibc' 'libssl3')
 
 sources=(
     "https://github.com/Happ-proxy/happ-desktop/releases/download/${version}/Happ.linux.x64.deb?~archive=false&~name=happ.deb"
@@ -31,7 +44,9 @@ scripts=(
 package() {
     cd "${srcdir}"
 
-    dpkg-deb -x happ.deb "${srcdir}/happ-extracted"
+    mkdir -p "${srcdir}/happ-extracted"
+    ar x happ.deb
+    tar -xf data.tar.* -C "${srcdir}/happ-extracted"
 
     cp -a "${srcdir}/happ-extracted/opt" "${pkgdir}/opt"
 
@@ -49,4 +64,14 @@ package() {
 
     mkdir -p "${pkgdir}/usr/bin"
     ln -s /opt/happ/bin/Happ "${pkgdir}/usr/bin/happ"
+}
+
+files() {
+    files-find-binary happ
+    files-find-desktop Happ.desktop
+    files-find \
+        "/opt/happ/**/*" \
+        "/etc/systemd/system/happd.service" \
+        "/usr/share/icons/hicolor/*/apps/happ.png" \
+        "/usr/share/mime/packages/happ-mime.xml"
 }

@@ -1,8 +1,11 @@
 name='github-desktop-plus'
 version='3.5.5.13'
 release=1
-desc='GitHub Desktop Plus — форк GitHub Desktop с расширенной функциональностью и интеграцией Bitbucket/GitLab'
-summary='GitHub Desktop Plus — улучшенный GUI-клиент для Git'
+summary='GitHub Desktop Plus — enhanced GUI client for Git'
+summary_ru='GitHub Desktop Plus — улучшенный GUI-клиент для Git'
+group='Development/Tools'
+desc='GitHub Desktop Plus is a fork of GitHub Desktop with extended functionality and Bitbucket/GitLab integration.'
+desc_ru='GitHub Desktop Plus — форк GitHub Desktop с расширенной функциональностью и интеграцией Bitbucket/GitLab.'
 homepage='https://github.com/pol-rivero/github-desktop-plus'
 maintainer='pol-rivero <https://github.com/pol-rivero>'
 
@@ -10,13 +13,16 @@ architectures=('amd64' 'arm64')
 
 license=('MIT')
 
+auto_req=1
+auto_prov=1
+
 deps=()
-deps_debian=('libc6' 'libgtk-3-0' 'libnotify4' 'libnss3' 'libxss1' 'libxtst6' 'xdg-utils' 'libsecret-1-0')
-deps_ubuntu=('libc6' 'libgtk-3-0' 'libnotify4' 'libnss3' 'libxss1' 'libxtst6' 'xdg-utils' 'libsecret-1-0')
-deps_fedora=('glibc' 'gtk3' 'libnotify' 'nss' 'libXScrnSaver' 'libXtst' 'xdg-utils' 'libsecret')
-deps_arch=('glibc' 'gtk3' 'libnotify' 'nss' 'libxss' 'libxtst' 'xdg-utils' 'libsecret')
-deps_opensuse=('glibc' 'gtk3' 'libnotify4' 'mozilla-nss' 'libXScrnSaver1' 'libXtst6' 'xdg-utils' 'libsecret-1-0')
-deps_altlinux=('glibc' 'libgtk+3' 'libnotify' 'libnss' 'libXScrnSaver' 'libXtst' 'xdg-utils' 'libsecret')
+deps_debian=('libc6' 'libgtk-3-0' 'libnotify4' 'libnss3' 'libxss1' 'libxtst6' 'xdg-utils' 'libsecret-1-0' 'libcurl3-gnutls')
+deps_ubuntu=('libc6' 'libgtk-3-0' 'libnotify4' 'libnss3' 'libxss1' 'libxtst6' 'xdg-utils' 'libsecret-1-0' 'libcurl3-gnutls')
+deps_fedora=('glibc' 'gtk3' 'libnotify' 'nss' 'libXScrnSaver' 'libXtst' 'xdg-utils' 'libsecret' 'libcurl')
+deps_arch=('glibc' 'gtk3' 'libnotify' 'nss' 'libxss' 'libxtst' 'xdg-utils' 'libsecret' 'curl')
+deps_opensuse=('glibc' 'gtk3' 'libnotify4' 'mozilla-nss' 'libXScrnSaver1' 'libXtst6' 'xdg-utils' 'libsecret-1-0' 'libcurl4')
+deps_altlinux=('glibc' 'libgtk+3' 'libnotify' 'libnss' 'libXScrnSaver' 'libXtst' 'xdg-utils' 'libsecret' 'libcurl-gnutls-compat')
 
 sources=(
     "https://github.com/pol-rivero/github-desktop-plus/releases/download/v${version}/GitHubDesktopPlus-v${version}-linux-x86_64.deb?~archive=false&~name=github-desktop-plus.deb"
@@ -45,4 +51,12 @@ package() {
     if [ -d "${srcdir}/extracted/opt" ]; then
         cp -a "${srcdir}/extracted/opt" "${pkgdir}/opt"
     fi
+}
+
+files() {
+    files-find-binary github-desktop-plus
+    files-find-desktop github-desktop-plus.desktop
+    files-find \
+        "/usr/**/*" \
+        "/opt/**/*"
 }

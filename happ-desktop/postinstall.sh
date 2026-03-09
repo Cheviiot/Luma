@@ -1,4 +1,6 @@
 #!/bin/bash
+# Скрипт после установки/обновления
+# Запускается как root
 set -e
 
 if [ -x "$(command -v update-mime-database)" ]; then
@@ -27,3 +29,5 @@ if [ -x "$(command -v systemctl)" ]; then
     systemctl enable happd.service || true
     systemctl start happd.service || true
 fi
+
+exit 0
