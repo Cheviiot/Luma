@@ -18,8 +18,9 @@ architectures=('all')
 license=('GPL-3.0-or-later')
 group='Graphical desktop/GNOME'
 
-auto_req=1
-auto_prov=1
+auto_reqprov_method="dirty"
+auto_req=0
+auto_prov=0
 
 # Зависимости для запуска
 deps=(
@@ -106,17 +107,14 @@ package() {
         "${pkgdir}/usr/share/metainfo/com.github.adwyra.metainfo.xml"
     
     # Лицензия
-    install-license "${src}/LICENSE"
+    install -Dm644 "${src}/LICENSE" "${pkgdir}/usr/share/licenses/${name}/LICENSE"
 }
 
 files() {
     files-find \
         "/usr/bin/adwyra" \
-        "/usr/lib/adwyra/adwyra/*.py" \
-        "/usr/lib/adwyra/adwyra/core/*.py" \
-        "/usr/lib/adwyra/adwyra/ui/*.py" \
-        "/usr/lib/adwyra/adwyra/ui/widgets/*.py" \
-        "/usr/lib/adwyra/adwyra/*.css" \
+        "/usr/lib/adwyra/adwyra/**/*" \
+        "/usr/share/applications/com.github.adwyra.desktop" \
         "/usr/share/icons/hicolor/16x16/apps/com.github.adwyra.png" \
         "/usr/share/icons/hicolor/24x24/apps/com.github.adwyra.png" \
         "/usr/share/icons/hicolor/32x32/apps/com.github.adwyra.png" \
@@ -125,7 +123,6 @@ files() {
         "/usr/share/icons/hicolor/128x128/apps/com.github.adwyra.png" \
         "/usr/share/icons/hicolor/256x256/apps/com.github.adwyra.png" \
         "/usr/share/icons/hicolor/512x512/apps/com.github.adwyra.png" \
-        "/usr/share/metainfo/com.github.adwyra.metainfo.xml"
-    files-find-desktop
-    files-find-license
+        "/usr/share/metainfo/com.github.adwyra.metainfo.xml" \
+        "/usr/share/licenses/adwyra/LICENSE"
 }

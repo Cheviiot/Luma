@@ -13,8 +13,9 @@ architectures=('amd64' 'arm64')
 
 license=('MIT')
 
-auto_req=1
-auto_prov=1
+auto_reqprov_method="dirty"
+auto_req=0
+auto_prov=0
 
 deps=()
 deps_debian=('libc6' 'libgtk-3-0' 'libnotify4' 'libnss3' 'libxss1' 'libxtst6' 'xdg-utils' 'libsecret-1-0' 'libcurl3-gnutls')
@@ -47,16 +48,11 @@ package() {
     tar -xf data.tar.* -C "${srcdir}/extracted"
 
     cp -a "${srcdir}/extracted/usr" "${pkgdir}/usr"
-
-    if [ -d "${srcdir}/extracted/opt" ]; then
-        cp -a "${srcdir}/extracted/opt" "${pkgdir}/opt"
-    fi
 }
 
 files() {
-    files-find-binary github-desktop-plus
-    files-find-desktop github-desktop-plus.desktop
     files-find \
-        "/usr/**/*" \
-        "/opt/**/*"
+        "/usr/bin/github-desktop-plus" \
+        "/usr/lib/github-desktop-plus/**/*" \
+        "/usr/share/applications/github-desktop-plus.desktop"
 }
