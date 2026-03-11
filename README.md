@@ -99,19 +99,4 @@ stplr search git
 **Сделано с ❤️ для Linux-сообщества**
 
 </div>
-│   ├── postinstall.sh
-│   ├── postremove.sh
-│   ├── LICENSE
-│   └── stapler-repo.toml
-├── adwyra/
-│   ├── Staplerfile
-│   ├── postinstall.sh
-│   ├── postremove.sh
-│   ├── LICENSE
-│   └── stapler-repo.toml
-└── README.md
-```
 
-## Требования
-
-- [Stapler](https://stplr.dev/) >= v0.0.29
