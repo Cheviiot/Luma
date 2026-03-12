@@ -70,17 +70,21 @@ package() {
     # Лицензия
     install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${name}/LICENSE"
     
-    # Установка иконок (CMake их не устанавливает в системный каталог)
-    install -Dm644 misc/winegui.png "${pkgdir}/usr/share/icons/hicolor/48x48/apps/winegui.png"
-    install -Dm644 misc/winegui.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/winegui.svg"
+    # Установка иконок с правильным именем для GTK4 app_id
+    install -Dm644 misc/winegui.png "${pkgdir}/usr/share/icons/hicolor/48x48/apps/org.melroy.winegui.png"
+    install -Dm644 misc/winegui.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.melroy.winegui.svg"
+    
+    # Патч .desktop файла для корректной привязки к окну
+    sed -i 's/^Icon=winegui$/Icon=org.melroy.winegui/' "${pkgdir}/usr/share/applications/winegui.desktop"
+    echo "StartupWMClass=org.melroy.winegui" >> "${pkgdir}/usr/share/applications/winegui.desktop"
 }
 
 files() {
     files-find \
         "/usr/bin/winegui" \
         "/usr/share/applications/winegui.desktop" \
-        "/usr/share/icons/hicolor/48x48/apps/winegui.png" \
-        "/usr/share/icons/hicolor/scalable/apps/winegui.svg" \
+        "/usr/share/icons/hicolor/48x48/apps/org.melroy.winegui.png" \
+        "/usr/share/icons/hicolor/scalable/apps/org.melroy.winegui.svg" \
         "/usr/share/glib-2.0/schemas/org.melroy.winegui.gschema.xml" \
         "/usr/share/winegui/**/*" \
         "/usr/share/licenses/winegui/*"
