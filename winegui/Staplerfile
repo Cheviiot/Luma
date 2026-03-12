@@ -21,12 +21,19 @@ deps_arch=('wine' 'cabextract' 'p7zip' 'unzip' 'wget' 'zenity' 'gtkmm-4.0')
 deps_opensuse=('wine' 'cabextract' 'p7zip-full' 'unzip' 'wget' 'zenity' 'gtkmm4')
 deps_altlinux=('wine' 'cabextract' 'p7zip' 'unzip' 'wget' 'zenity' 'libgtkmm4')
 
+build_deps=()
+build_deps_altlinux=('cmake' 'ninja-build' 'gcc-c++' 'libgtkmm4-devel' 'pkg-config' 'libjson-glib-devel')
+build_deps_debian=('cmake' 'ninja-build' 'g++' 'libgtkmm-4.0-dev' 'pkg-config' 'libjson-glib-dev')
+build_deps_ubuntu=('cmake' 'ninja-build' 'g++' 'libgtkmm-4.0-dev' 'pkg-config' 'libjson-glib-dev')
+build_deps_fedora=('cmake' 'ninja-build' 'gcc-c++' 'gtkmm4.0-devel' 'pkgconfig' 'json-glib-devel')
+build_deps_arch=('cmake' 'ninja' 'gcc' 'gtkmm-4.0' 'pkgconf' 'json-glib')
+
 auto_reqprov_method="dirty"
 auto_req=0
 auto_prov=0
 
 sources=(
-    "https://winegui.melroy.org/downloads/WineGUI-v${version}.rpm?~archive=false&~name=winegui.rpm"
+    "https://gitlab.melroy.org/melroy/winegui/-/archive/v${version}/winegui-v${version}.tar.gz"
 )
 
 checksums=('SKIP')
@@ -36,14 +43,32 @@ scripts=(
     ['postremove']='postremove.sh'
 )
 
+prepare() {
+    cd "${srcdir}/winegui-v${version}"
+    
+    # Создаём version.txt для сборки
+    echo "${version}" > version.txt
+}
+
+build() {
+    cd "${srcdir}/winegui-v${version}"
+    
+    cmake -GNinja -B build \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DGSETTINGS_COMPILE:BOOL=FALSE \
+        -DCHECK_FOR_UPDATE=OFF
+    
+    cmake --build ./build --config Release
+}
+
 package() {
-    cd "${srcdir}"
-
-    mkdir -p "${srcdir}/extracted"
-    rpm2cpio winegui.rpm | cpio -idmv -D "${srcdir}/extracted"
-
-    # Копируем файлы
-    cp -a "${srcdir}/extracted/usr" "${pkgdir}/usr"
+    cd "${srcdir}/winegui-v${version}"
+    
+    DESTDIR="${pkgdir}" cmake --install ./build
+    
+    # Лицензия
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${name}/LICENSE"
 }
 
 files() {
@@ -52,5 +77,6 @@ files() {
         "/usr/share/applications/winegui.desktop" \
         "/usr/share/icons/hicolor/**/apps/winegui.*" \
         "/usr/share/glib-2.0/schemas/org.melroy.winegui.gschema.xml" \
-        "/usr/share/winegui/**/*"
+        "/usr/share/winegui/**/*" \
+        "/usr/share/licenses/winegui/*"
 }
