@@ -46,8 +46,8 @@ scripts=(
 prepare() {
     cd "${srcdir}/WineGUI-${version}"
     
-    # Создаём version.txt для сборки
-    echo "${version}" > version.txt
+    # Создаём version.txt для сборки (без перевода строки)
+    printf '%s' "${version}" > version.txt
 }
 
 build() {
