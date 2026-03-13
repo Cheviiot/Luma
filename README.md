@@ -42,7 +42,7 @@ stplr install <имя_пакета>
 | [**github-plus**](https://github.com/pol-rivero/github-desktop-plus) | `3.5.7.0` | Улучшенный GUI-клиент для Git с интеграцией Bitbucket/GitLab | MIT |
 | [**aya**](https://github.com/liriliri/aya) | `1.14.2` | Приложение для управления Android устройствами через ADB | AGPL-3.0 |
 
-###  Медиа и развлечения
+### 🎬 Медиа и развлечения
 
 | Пакет | Версия | Описание | Лицензия |
 |:------|:------:|:---------|:--------:|
@@ -82,7 +82,7 @@ stplr search git
 
 ---
 
-## � Автообновление версий
+## 🔄 Автообновление версий
 
 Репозиторий автоматически проверяет новые версии пакетов через GitHub Actions:
 
@@ -105,7 +105,7 @@ stplr search git
 
 ---
 
-## �🔧 Требования
+## 🔧 Требования
 
 - [Stapler](https://stplr.dev) — универсальный менеджер пакетов для Linux
 - Поддерживаемые дистрибутивы: **ALT Linux**, **Fedora**, **Debian**, **Ubuntu**, **Arch Linux**, **openSUSE**
