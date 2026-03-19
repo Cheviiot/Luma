@@ -5,7 +5,7 @@
 
 [![Stapler](https://img.shields.io/badge/Stapler-репозиторий-7C3AED?style=for-the-badge&logo=linux&logoColor=white)](https://stplr.dev)
 &nbsp;
-[![Packages](https://img.shields.io/badge/пакетов-5-22C55E?style=for-the-badge)](https://github.com/Cheviiot/Luma)
+[![Packages](https://img.shields.io/badge/пакетов-6-22C55E?style=for-the-badge)](https://github.com/Cheviiot/Luma)
 &nbsp;
 [![License](https://img.shields.io/badge/лицензия-Mixed-F59E0B?style=for-the-badge)](https://github.com/Cheviiot/Luma)
 &nbsp;
@@ -39,6 +39,12 @@ stplr install <имя_пакета>
 <td><a href="https://github.com/Happ-proxy/happ-desktop"><b>happ</b></a></td>
 <td align="center"><code>2.5.2</code></td>
 <td>GUI для xray-core с поддержкой TUN/VPN</td>
+<td align="center">Проприетарная</td>
+</tr>
+<tr>
+<td><a href="https://www.freedownloadmanager.org"><b>fdm</b></a></td>
+<td align="center"><code>6.33.1</code></td>
+<td>Мощный менеджер загрузок с поддержкой торрентов</td>
 <td align="center">Проприетарная</td>
 </tr>
 </table>

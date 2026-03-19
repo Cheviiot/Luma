@@ -1,0 +1,78 @@
+name='fdm'
+version='6.33.1'
+release=1
+summary='Free Download Manager — powerful download accelerator'
+summary_ru='Free Download Manager — мощный менеджер загрузок'
+group='Networking/WWW'
+desc='Free Download Manager is a powerful modern cross-platform download accelerator and organizer.
+Supports HTTP/HTTPS/FTP/SFTP, BitTorrent, video downloading, multi-threaded downloads, and proxy.'
+desc_ru='Free Download Manager — мощный кроссплатформенный менеджер загрузок.
+Поддержка HTTP/HTTPS/FTP/SFTP, BitTorrent, скачивание видео, многопоточная загрузка и прокси.'
+homepage='https://www.freedownloadmanager.org'
+maintainer='Freedownloadmanager Team <support@freedownloadmanager.org>'
+
+architectures=('amd64')
+
+license=('custom')
+nonfree=1
+nonfree_url='https://www.freedownloadmanager.org/privacy.htm'
+
+# auto_req отключен - Qt6 приложение с bundled библиотеками
+auto_reqprov_method="dirty"
+auto_req=0
+auto_prov=0
+
+deps=()
+deps_debian=('openssl' 'xdg-utils' 'ffmpeg' 'bubblewrap' 'libxcb-cursor0')
+deps_ubuntu=('openssl' 'xdg-utils' 'ffmpeg' 'bubblewrap' 'libxcb-cursor0')
+deps_fedora=('openssl' 'xdg-utils' 'ffmpeg-free' 'bubblewrap' 'xcb-util-cursor')
+deps_arch=('openssl' 'xdg-utils' 'ffmpeg' 'bubblewrap' 'xcb-util-cursor')
+deps_opensuse=('openssl' 'xdg-utils' 'ffmpeg' 'bubblewrap' 'libxcb-cursor0')
+deps_altlinux=('openssl' 'xdg-utils' 'ffmpeg' 'bubblewrap' 'libxcbutil-cursor')
+
+sources=(
+    "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb?~archive=false&~name=fdm.deb"
+)
+
+checksums=('SKIP')
+
+scripts=(
+    ['postinstall']='postinstall.sh'
+    ['postremove']='postremove.sh'
+)
+
+package() {
+    cd "${srcdir}"
+
+    mkdir -p "${srcdir}/fdm-extracted"
+    ar x fdm.deb
+    tar -xf data.tar.* -C "${srcdir}/fdm-extracted"
+
+    # Основной каталог приложения
+    cp -a "${srcdir}/fdm-extracted/opt" "${pkgdir}/opt"
+
+    # Desktop файл
+    install -Dm644 "${srcdir}/fdm-extracted/usr/share/applications/freedownloadmanager.desktop" \
+        "${pkgdir}/usr/share/applications/freedownloadmanager.desktop"
+
+    # AppData
+    install -Dm644 "${srcdir}/fdm-extracted/usr/share/appdata/freedownloadmanager.appdata.xml" \
+        "${pkgdir}/usr/share/appdata/freedownloadmanager.appdata.xml"
+
+    # Иконка в hicolor для интеграции с DE
+    install -Dm644 "${srcdir}/fdm-extracted/opt/freedownloadmanager/icon.png" \
+        "${pkgdir}/usr/share/icons/hicolor/256x256/apps/freedownloadmanager.png"
+
+    # Симлинк в /usr/bin
+    mkdir -p "${pkgdir}/usr/bin"
+    ln -s /opt/freedownloadmanager/fdm "${pkgdir}/usr/bin/fdm"
+}
+
+files() {
+    files-find \
+        "/usr/bin/fdm" \
+        "/opt/freedownloadmanager/**/*" \
+        "/usr/share/applications/freedownloadmanager.desktop" \
+        "/usr/share/appdata/freedownloadmanager.appdata.xml" \
+        "/usr/share/icons/hicolor/256x256/apps/freedownloadmanager.png"
+}

@@ -23,7 +23,7 @@ log_info() { echo -e "${CYAN}[INFO]${NC} $1"; }
 # Список пакетов для теста
 # kitsune требует meson + builddeps, тестируем отдельно
 PACKAGES_SIMPLE=(adwyra vual)
-PACKAGES_DEB=(github-plus happ)
+PACKAGES_DEB=(github-plus happ fdm)
 PACKAGES_BUILD=(kitsune)
 
 RPM_RESULT=""
