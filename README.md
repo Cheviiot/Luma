@@ -1,15 +1,15 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Cheviiot/Lumenara/main/.github/assets/banner.svg" alt="Lumenara" width="100%">
+<img src="https://raw.githubusercontent.com/Cheviiot/Luma/main/.github/assets/banner.svg" alt="Luma" width="100%">
 
 
 [![Stapler](https://img.shields.io/badge/Stapler-репозиторий-7C3AED?style=for-the-badge&logo=linux&logoColor=white)](https://stplr.dev)
 &nbsp;
-[![Packages](https://img.shields.io/badge/пакетов-5-22C55E?style=for-the-badge)](https://github.com/Cheviiot/Lumenara)
+[![Packages](https://img.shields.io/badge/пакетов-5-22C55E?style=for-the-badge)](https://github.com/Cheviiot/Luma)
 &nbsp;
-[![License](https://img.shields.io/badge/лицензия-Mixed-F59E0B?style=for-the-badge)](https://github.com/Cheviiot/Lumenara)
+[![License](https://img.shields.io/badge/лицензия-Mixed-F59E0B?style=for-the-badge)](https://github.com/Cheviiot/Luma)
 &nbsp;
-[![ALT](https://img.shields.io/badge/ALT_Linux-tested-3B82F6?style=for-the-badge)](https://github.com/Cheviiot/Lumenara)
+[![ALT](https://img.shields.io/badge/ALT_Linux-tested-3B82F6?style=for-the-badge)](https://github.com/Cheviiot/Luma)
 
 </div>
 
@@ -18,7 +18,7 @@
 ## 🚀 Быстрый старт
 
 ```bash
-stplr repo add lumenara https://github.com/Cheviiot/Lumenara.git
+stplr repo add luma https://github.com/Cheviiot/Luma.git
 stplr refresh
 stplr install <имя_пакета>
 ```

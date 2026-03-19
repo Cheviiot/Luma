@@ -2,16 +2,16 @@
 minVersion = "v0.0.29"
 
 # Git mirrors
-url = "https://github.com/Cheviiot/Lumenara.git"
+url = "https://github.com/Cheviiot/Luma.git"
 ref = "main"
 
 [repo.meta]
-report_url = "https://github.com/Cheviiot/Lumenara/issues"
-title = "Lumenara"
-homepage = "https://github.com/Cheviiot/Lumenara"
+report_url = "https://github.com/Cheviiot/Luma/issues"
+title = "Luma"
+homepage = "https://github.com/Cheviiot/Luma"
 
 summary = "Stapler-репозиторий с приложениями"
 
 description = """
-Lumenara — Stapler-репозиторий, содержащий сборочные скрипты
+Luma — Stapler-репозиторий, содержащий сборочные скрипты
 для установки приложений через Stapler."""

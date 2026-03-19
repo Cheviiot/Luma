@@ -34,7 +34,7 @@
     <path d="M25 2 L31 18 L48 18 L34 28 L39 45 L25 35 L11 45 L16 28 L2 18 L19 18 Z" fill="url(#accent)" opacity="0.9"/>
   </g>
   <!-- Title -->
-  <text x="450" y="108" text-anchor="middle" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="white" letter-spacing="2">Lumenara</text>
+  <text x="450" y="108" text-anchor="middle" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="white" letter-spacing="2">Luma</text>
   <!-- Subtitle -->
   <text x="450" y="145" text-anchor="middle" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" fill="#A78BFA" letter-spacing="4" font-weight="400">STAPLER REPOSITORY</text>
 </svg>
