@@ -41,12 +41,6 @@ stplr install <имя_пакета>
 <td>GUI для xray-core с поддержкой TUN/VPN</td>
 <td align="center">Проприетарная</td>
 </tr>
-<tr>
-<td><a href="https://www.freedownloadmanager.org"><b>fdm</b></a></td>
-<td align="center"><code>6.33.1</code></td>
-<td>Мощный менеджер загрузок с поддержкой торрентов</td>
-<td align="center">Проприетарная</td>
-</tr>
 </table>
 
 <table>

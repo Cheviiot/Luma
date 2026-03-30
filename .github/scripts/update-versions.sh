@@ -19,14 +19,9 @@ declare -A PACKAGE_REPOS=(
     ["happ"]="Happ-proxy/happ-desktop"
     ["github-plus"]="pol-rivero/github-desktop-plus"
     ["adwyra"]="cheviiot/adwyra"
-    ["kitsune"]="alt-gnome/Kitsune"
     ["vual"]="Cheviiot/Vual"
 )
 
-# Пакеты на Gitea (altlinux.space) вместо GitHub
-declare -A PACKAGE_GITEA=(
-    ["kitsune"]="https://altlinux.space"
-)
 
 # Специальные обработчики версий (для нестандартных форматов)
 declare -A VERSION_TRANSFORMS=(
